@@ -29,7 +29,7 @@ iconStyle:{
   marginHorizontal: 15,
 
 
-
+//stiller
 },
 inputStyle:{
 flex:1,

@@ -16,7 +16,7 @@ export default function App() {
 
   );
 }
-
+//git app kısmı
 const styles = StyleSheet.create({
   container: {
     flex: 1,
