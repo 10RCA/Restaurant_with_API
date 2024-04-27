@@ -1,9 +1,9 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default ()=>{
-
-const searhApi = async(searchTerm) => {
-    await yelp.get('/search',{
+const [results, setResults] = useState()
+const searchApi = async(searchTerm) => {
+   const response= await yelp.get('/search',{
         params:{
             limit:50,
             term: searchTerm,
@@ -11,11 +11,13 @@ const searhApi = async(searchTerm) => {
 
         }
     })
+    setResults(response.data.businesses);
+
 
 }
     useEffect(()=>{
-    searhApi('Toast');
+    searchApi('Toast');
 }, []);
-    return[searhApi];
+    return[searchApi, results];
     //api
 };

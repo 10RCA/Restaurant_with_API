@@ -1,7 +1,24 @@
 import { StyleSheet, Text, View, TextInput } from 'react-native'
-import React from 'react'
+import React from 'react';
+import SearchBar from   '../components/SearchBar';
+import useResults from '../api/hooks/useResults';
 import { AntDesign } from '@expo/vector-icons';
+import useResults from '../api/hooks/useResults';
+import ResultsList from '../components/ResultsList';
 export default function SearchScreen() {
+ 
+const [searchApi, results] = useResults()
+console.log(results);
+
+const filterResultsByPrice = (price) =>{
+
+return results.filter((result)=>{
+
+  return result.price === price
+})
+
+}
+
   return (
     <View style={styles.backgroundStyle}>
        <AntDesign style={styles.iconStyle} name="search1" size={30} color="black" />
@@ -11,6 +28,11 @@ export default function SearchScreen() {
     autoCorrect={false}
     autoCapitalize='none'
     />
+    <SearchBar/>
+    <ResultsList title = 'Öğrenci Dostu Restoranlar'results={filterResultsByPrice('₺')}/>
+    <ResultsList title = 'Uygun Restoranlar'results={filterResultsByPrice('₺₺')}/>
+    <ResultsList title = 'Zengin İşi Restoranlar'results={filterResultsByPrice('₺₺₺')}/>
+
     </View>
   )
 }
